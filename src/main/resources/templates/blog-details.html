@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Блог сайта</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+</head>
+<body>
+<header th:insert="blocks/header :: header" class="p-3 bg-dark text-white"></header>
+
+<div class="container mt-5">
+    <h1>Блог сайта</h1>
+    <div th:each="element : ${post}" class="alert alert-info mt-2">
+        <h1 th:text="${element.getTitle()}"></h1>
+        <p th:text="${element.getText()}"></p>
+        <p> <b>Просмотры:</b> <span th:text="${element.getViews()}"/></p>
+        <a th:href="'/blog/' + ${element.getId()} + '/edit'" class="btn btn-warning">Редактировать</a>
+        <br>
+        <form th:action="'/blog/' + ${element.getId()} + '/remove'" method="post">
+            <button class="btn btn-warning" type="submit">Удалить</button>
+        </form>
+    </div>
+</div>
+
+<footer th:insert="blocks/footer :: footer" class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top"></footer>
+</body>
+</html>
