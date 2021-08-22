@@ -11,6 +11,11 @@
 
 <div class="container mt-5">
     <h1>Блог сайта</h1>
+    <div th:each="post : ${posts}" class="alert alert-info mt-2">
+        <h3 th:text="${post.getTitle()}"></h3>
+        <p th:text="${post.getAnnounce()}"></p>
+        <a th:href="'/blog/' + ${post.getId()}">Детальнее</a>
+    </div>
 </div>
 
 <footer th:insert="blocks/footer :: footer" class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top"></footer>
