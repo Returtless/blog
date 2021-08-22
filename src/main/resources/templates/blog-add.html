@@ -9,13 +9,17 @@
 <body>
 <header th:insert="blocks/header :: header" class="p-3 bg-dark text-white"></header>
 
-<div class="container mt-5">
-    <h1>Блог сайта</h1>
-    <div th:each="post : ${posts}" class="alert alert-info mt-2">
-        <h3 th:text="${post.getTitle()}"></h3>
-        <p th:text="${post.getAnnounce()}"></p>
-        <a th:href="'/blog/' + ${post.getId()}" class="btn btn-warning">Детальнее</a>
-    </div>
+<div class="container mt-5 mb-5">
+    <h1 th:text="${title}"></h1>
+    <form action="/blog/add" method="post">
+        <input type="text" name="title" placeholder="Введите название статьи" class="form-control">
+        <br>
+        <input type="text" name="announce" placeholder="Введите анонс" class="form-control">
+        <br>
+        <textarea name="full_text" placeholder="Введите полный текст статьи" class="form-control"></textarea>
+        <br>
+        <button type="submit" class="btn btn-success">Добавить статью</button>
+    </form>
 </div>
 
 <footer th:insert="blocks/footer :: footer" class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top"></footer>
